@@ -1,0 +1,19 @@
+node_modules/
+dist/
+.vite/
+*.local
+
+# Environment variables
+.env
+.env.local
+
+# Claude
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
