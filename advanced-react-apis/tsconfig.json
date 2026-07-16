@@ -1,0 +1,12 @@
+{
+	"include": ["**/*.ts", "**/*.tsx"],
+	"extends": ["@epic-web/config/typescript"],
+	"compilerOptions": {
+		"lib": ["dom", "dom.iterable", "esnext"],
+		// makes it a bit easier for workshop participants
+		"noUncheckedIndexedAccess": false,
+		"paths": {
+			"#*": ["./*"]
+		}
+	}
+}
