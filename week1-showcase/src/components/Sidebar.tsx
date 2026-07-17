@@ -1,46 +1,37 @@
-import { useTheme } from '../context/ThemeContext'
+import { sidebarMenuItems, sidebarUploadItems } from '../data'
 
-export type View = 'dashboard' | 'contacts' | 'interactivity' | 'styling'
-
-const menuItems: { id: View; label: string }[] = [
-  { id: 'dashboard', label: 'Home' },
-  { id: 'contacts', label: 'Contact List' },
-  { id: 'interactivity', label: 'Interactivity' },
-  { id: 'styling', label: 'Styling & Theme' },
-]
-
-interface SidebarProps {
-  activeView: View
-  onNavigate: (view: View) => void
-}
-
-export function Sidebar({ activeView, onNavigate }: SidebarProps) {
-  const { theme, toggle } = useTheme()
-
+export function Sidebar() {
   return (
     <aside className="sidebar">
       <div className="sidebar__logo">
         <div className="sidebar__logo-icon" />
-        <span className="sidebar__logo-text">RAVN Nerdery</span>
       </div>
 
       <nav className="sidebar__nav">
-        {menuItems.map((item) => (
+        {sidebarMenuItems.map((label, i) => (
           <button
-            key={item.id}
+            key={label}
             type="button"
-            className={`sidebar__item${activeView === item.id ? ' sidebar__item--active' : ''}`}
-            onClick={() => onNavigate(item.id)}
+            className={`sidebar__item${i === 0 ? ' sidebar__item--active' : ''}`}
           >
             <div className="sidebar__icon" />
-            <span>{item.label}</span>
+            <span>{label}</span>
           </button>
         ))}
       </nav>
 
       <div className="sidebar__footer">
-        <button type="button" className="sidebar__theme-btn" onClick={toggle}>
-          <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
+        <div className="sidebar__upload-list">
+          {sidebarUploadItems.map((label) => (
+            <div key={label} className="sidebar__upload-item">
+              <div className="sidebar__upload-check" />
+              <span>{label}</span>
+            </div>
+          ))}
+        </div>
+        <button type="button" className="sidebar__create-btn">
+          <span>Create New</span>
+          <span className="sidebar__create-plus">+</span>
         </button>
       </div>
     </aside>
